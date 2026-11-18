@@ -6,7 +6,7 @@ import {
   Code2,
   Database,
   Mail,
-  Phone,
+  MessageCircle,
   Send,
   Server,
   Sparkles,
@@ -295,9 +295,9 @@ export default function Home() {
                   <span><small>ESCRÍBEME</small><strong>jgjg.0503@gmail.com</strong></span>
                   <ArrowUpRight size={17} />
                 </a>
-                <a className="contact-method" href="tel:04169646008">
-                  <span className="contact-method-icon"><Phone size={18} /></span>
-                  <span><small>LLÁMAME</small><strong>0416 964 6008</strong></span>
+                <a className="contact-method" href="https://wa.me/584169646008" target="_blank" rel="noopener noreferrer" aria-label="Escríbeme por WhatsApp">
+                  <span className="contact-method-icon"><MessageCircle size={18} /></span>
+                  <span><small>ESCRÍBEME POR WHATSAPP</small><strong>0416 964 6008</strong></span>
                   <ArrowUpRight size={17} />
                 </a>
               </div>
