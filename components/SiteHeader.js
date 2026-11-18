@@ -7,12 +7,14 @@ const links = [
   { href: "#sobre-mi", label: "Sobre mí" },
   { href: "#habilidades", label: "Habilidades" },
   { href: "#servicios", label: "Servicios" },
-  { href: "#portafolio", label: "Portafolio" },
 ];
 
-export default function SiteHeader() {
+export default function SiteHeader({ showPortfolio = false }) {
   const [isOpen, setIsOpen] = useState(false);
   const closeMenu = () => setIsOpen(false);
+  const navigationLinks = showPortfolio
+    ? [...links, { href: "#portafolio", label: "Portafolio" }]
+    : links;
 
   return (
     <header className="site-header">
@@ -26,7 +28,7 @@ export default function SiteHeader() {
         </a>
 
         <nav id="main-navigation" className={`site-nav${isOpen ? " is-open" : ""}`} aria-label="Navegación principal">
-          {links.map((link) => (
+          {navigationLinks.map((link) => (
             <a href={link.href} key={link.href} onClick={closeMenu}>
               {link.label}
             </a>

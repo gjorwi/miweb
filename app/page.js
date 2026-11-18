@@ -15,6 +15,7 @@ import {
 import ContactForm from "@/components/ContactForm";
 import PortfolioGrid from "@/components/PortfolioGrid";
 import SiteHeader from "@/components/SiteHeader";
+import { showPortfolio } from "@/lib/site-config";
 
 const skillGroups = [
   {
@@ -67,7 +68,7 @@ const services = [
 export default function Home() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader showPortfolio={showPortfolio} />
       <main>
         <section className="hero-section" id="inicio">
           <div className="hero-grid-bg" aria-hidden="true" />
@@ -89,8 +90,8 @@ export default function Home() {
               </p>
 
               <div className="hero-actions">
-                <a className="button-primary" href="#portafolio">
-                  Explorar portafolio <ArrowUpRight size={17} />
+                <a className="button-primary" href={showPortfolio ? "#portafolio" : "#servicios"}>
+                  {showPortfolio ? "Explorar portafolio" : "Ver servicios"} <ArrowUpRight size={17} />
                 </a>
                 <a className="button-quiet" href="#contacto">
                   Hablemos <ArrowRight size={16} />
@@ -262,28 +263,30 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section portfolio-section" id="portafolio">
-          <div className="section-shell">
-            <div className="section-heading-row portfolio-heading">
-              <div>
-                <p className="section-kicker"><span>04</span> PORTAFOLIO</p>
-                <h2 className="section-title">Trabajo que habla<br /><span>por sí mismo.</span></h2>
+        {showPortfolio && (
+          <section className="section portfolio-section" id="portafolio">
+            <div className="section-shell">
+              <div className="section-heading-row portfolio-heading">
+                <div>
+                  <p className="section-kicker"><span>04</span> PORTAFOLIO</p>
+                  <h2 className="section-title">Trabajo que habla<br /><span>por sí mismo.</span></h2>
+                </div>
+                <p className="section-intro">
+                  Espacios de ejemplo para tus casos de estudio. Añade el reto, tu solución, las tecnologías y los enlaces de cada proyecto.
+                </p>
               </div>
-              <p className="section-intro">
-                Espacios de ejemplo para tus casos de estudio. Añade el reto, tu solución, las tecnologías y los enlaces de cada proyecto.
-              </p>
-            </div>
 
-            <PortfolioGrid />
-            <div className="portfolio-footnote"><span /> Proyectos editables · Sustituye el contenido de ejemplo antes de publicar</div>
-          </div>
-        </section>
+              <PortfolioGrid />
+              <div className="portfolio-footnote"><span /> Proyectos editables · Sustituye el contenido de ejemplo antes de publicar</div>
+            </div>
+          </section>
+        )}
 
         <section className="section contact-section" id="contacto">
           <div className="contact-glow" aria-hidden="true" />
           <div className="section-shell contact-layout grid gap-12 lg:grid-cols-[.84fr_1.16fr]">
             <div className="contact-copy">
-              <p className="section-kicker"><span>05</span> CONTACTO</p>
+              <p className="section-kicker"><span>{showPortfolio ? "05" : "04"}</span> CONTACTO</p>
               <h2 className="section-title">¿Tienes una idea?<br /><span>Hagámosla realidad.</span></h2>
               <p className="contact-description">
                 Cuéntame qué quieres construir, mejorar o resolver. Estoy a un mensaje de distancia.
